@@ -29,14 +29,13 @@ pub fn levenshtein(a: &str, b: &str) -> usize {
      * This is why it’s fast, normally a matrix is used,
      * here we use a single vector. */
     let mut cache: Vec<usize> = vec![0; length_a];
-    let mut index_a = 0;
     let mut distance_a;
     let mut distance_b;
 
-    while index_a < length_a {
-        index_a += 1;
-        cache[index_a - 1] = index_a;
+    for (i, elem) in cache.iter_mut().enumerate() {
+        *elem = i + 1;
     }
+
 
     /* Loop. */
     for (index_b, code_b) in b.chars().enumerate() {
